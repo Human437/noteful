@@ -1,7 +1,7 @@
 import React from 'react';
 import STORE from './../dummy-store';
-import { Link } from 'react-router-dom'
-import './../note/noteMain.css'
+import { Link } from 'react-router-dom';
+import './../note/noteMain.css';
 import './folderMain.css';
 
 function FolderMain(props){
