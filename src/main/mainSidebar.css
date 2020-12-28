@@ -1,4 +1,4 @@
-#routeFolderList{
+.mainSidebarFolderList{
   border-style: solid;
   border-width: 2px;
   width: 90%;
@@ -8,7 +8,7 @@
   align-items: center;
   justify-content: center;
 }
-#routeAddFolderBtn{
+#mainSidebarFolderBtn{
   width: 85%;
   background-color: white;
   border-style: solid;
