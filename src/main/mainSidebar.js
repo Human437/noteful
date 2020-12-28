@@ -8,7 +8,7 @@ export default function MainSidebar(){
       <ul>
         {STORE.folders.map(folder =>
           <li key = {folder.id} id = 'routeFolderList'>
-            <Link to = {`/folder/${folder.name}`}>{folder.name}</Link>
+            <Link to = {`/folder/${folder.id}`}>{folder.name}</Link>
           </li>
         )}
       </ul>
