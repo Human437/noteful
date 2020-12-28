@@ -4,18 +4,10 @@ import './App.css';
 import NoteMain from './note/noteMain';
 import NoteSidebar from './note/noteSidebar';
 import FolderMain from './folder/folderMain';
-import FolderSidebar from './folder/folderSidebar';
+import MainMain from './main/mainMain';
+import MainSidebar from './main/mainSidebar';
 
 class App extends React.Component {
-  constructor(props){
-    super(props);
-    this.state = {
-      noteIndex: 1,
-      folderIndex: 1,
-
-    };
-  }
-
   render(){
     return (
       <>
@@ -24,7 +16,11 @@ class App extends React.Component {
           <div className = 'sidebar'>
             <Route
               exact path='/'
-              component={FolderSidebar}
+              component={MainSidebar}
+            />
+            <Route
+              path='/folder/:folderID'
+              component={MainSidebar}
             />
             <Route 
               path = '/note/:noteid' 
@@ -34,6 +30,14 @@ class App extends React.Component {
           <main>
             <Route
               exact path='/'
+              component={MainMain}
+            />
+            <Route
+              path='/folder/:folderID'
+              // component={(props) => {
+              //   console.log(props.match.params.folderID)
+              //   return <div />
+              // }} 
               component={FolderMain}
             />
             <Route 
