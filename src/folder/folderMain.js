@@ -24,7 +24,22 @@ function FolderMain(props){
                         <h3><Link to ={`/note/${note.id}`}>{note.name}</Link></h3>
                         <div id = 'date-button-box'>
                           <p>Date modified: {`${month}/${day}/${year}`}</p>
-                          <button id = 'deleteNoteBtn'>Delete Note</button>
+                          <button 
+                            id = {note.id} 
+                            className = 'deleteNoteBtn'
+                            onClick = {(e)=>{
+                              console.log(e.target.id)
+                              fetch(`http://localhost:9090/notes/${e.target.id}`, {
+                                method: 'DELETE',
+                                headers: {
+                                  'content-type': 'application/json'
+                                },
+                              })
+                              props.history.push('/')
+                            }}
+                          >
+                            Delete Note
+                          </button>
                         </div>
                       </div>
                     </li>
