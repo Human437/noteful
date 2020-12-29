@@ -6,7 +6,6 @@ import NoteSidebar from './note/noteSidebar';
 import FolderMain from './folder/folderMain';
 import MainMain from './main/mainMain';
 import MainSidebar from './main/mainSidebar';
-import STORE from './dummy-store';
 import NotefulContext from './notefulContext';
 
 class App extends React.Component {
