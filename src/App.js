@@ -13,14 +13,24 @@ class App extends React.Component {
   constructor(props){
     super(props);
     this.state = {
-      folders: STORE.folders,
-      notes: STORE.notes,
+      folders: [],
+      notes: [],
     };
   }
+
+  componentDidMount(){
+    fetch('http://localhost:9090/folders')
+      .then(response => response.json())
+      .then(data => this.setState({folders:data}))
+    fetch(`http://localhost:9090/notes`)
+      .then(response => response.json())
+      .then(data => this.setState({notes:data}))
+  }
+
   render(){
     return (
       <NotefulContext.Provider
-        value = {{folders:STORE.folders, notes:STORE.notes}}>
+        value = {{folders:this.state.folders, notes:this.state.notes}}>
         <>
           <h1><Link to='/'>Noteful</Link></h1>
           <div id = 'container'>
