@@ -9,12 +9,6 @@
   justify-content: space-between;
   align-items: center;
 }
-#deleteNoteBtn{
-  border-color: black;
-  border-width: 2px;
-  height: 35px;
-  background-color: white;
-}
 .deleteNoteBtn{
   border-color: black;
   border-width: 2px;
