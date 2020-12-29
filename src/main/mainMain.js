@@ -1,29 +1,36 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import NotefulContext from './../notefulContext';
 
-export default function MainMain(props){
+export default function MainMain(){
   return (
-    <>
-      <ul>
-        {props.notes.map(note =>{
-          const date = new Date(note.modified);
-          const year = date.getFullYear();
-          const month = date.getMonth()+1;
-          const day = date.getDate();
-          return (
-            <li key = {note.id}>
-              <div id = 'noteContainer'>
-                <h3><Link to ={`/note/${note.id}`}>{note.name}</Link></h3>
-                <div id = 'date-button-box'>
-                  <p>Date modified: {`${month}/${day}/${year}`}</p>
-                  <button id = 'deleteNoteBtn'>Delete Note</button>
-                </div>
-              </div>
-            </li>
-          )
-        })}
-      </ul>
-      <button id = 'addNoteBtn'>Add note</button>
-    </>
+    <NotefulContext.Consumer>
+      {(value) => {
+        return(
+          <>
+            <ul>
+              {value.notes.map(note =>{
+                const date = new Date(note.modified);
+                const year = date.getFullYear();
+                const month = date.getMonth()+1;
+                const day = date.getDate();
+                return (
+                  <li key = {note.id}>
+                    <div id = 'noteContainer'>
+                      <h3><Link to ={`/note/${note.id}`}>{note.name}</Link></h3>
+                      <div id = 'date-button-box'>
+                        <p>Date modified: {`${month}/${day}/${year}`}</p>
+                        <button id = 'deleteNoteBtn'>Delete Note</button>
+                      </div>
+                    </div>
+                  </li>
+                )
+              })}
+            </ul>
+            <button id = 'addNoteBtn'>Add note</button>
+          </>
+        )
+      }}
+    </NotefulContext.Consumer>
   )
 }
