@@ -14,13 +14,29 @@ class App extends React.Component {
         <h1><Link to='/'>Noteful</Link></h1>
         <div id = 'container'>
           <div className = 'sidebar'>
-            <Route
+            {/* <Route
               exact path='/'
               component={MainSidebar}
+            /> */}
+            <Route
+              exact path='/'
+              render = {(props) => (
+                <MainSidebar 
+                  {...props} 
+                />
+              )}
             />
+            {/* <Route
+              path='/folder/:folderID'
+              component={FolderSidebar}
+            /> */}
             <Route
               path='/folder/:folderID'
-              component={MainSidebar}
+              render = {(props) => (
+                <MainSidebar 
+                  {...props} 
+                />
+              )}
             />
             <Route 
               path = '/note/:noteid' 
