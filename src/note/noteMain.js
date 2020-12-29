@@ -1,6 +1,7 @@
 import React from 'react';
 import './noteMain.css';
 import NotefulContext from './../notefulContext';
+import { withRouter } from 'react-router-dom';
 
 function NoteMain(props){
   return(
@@ -20,7 +21,22 @@ function NoteMain(props){
               <h3>{note.name}</h3>
               <div id = 'date-button-box'>
                 <p>Date modified: {`${month}/${day}/${year}`}</p>
-                <button id = 'deleteNoteBtn'>Delete Note</button>
+                <button 
+                  id = {note.id} 
+                  className = 'deleteNoteBtn'
+                  onClick = {(e)=>{
+                    console.log(e.target.id)
+                    fetch(`http://localhost:9090/notes/${e.target.id}`, {
+                      method: 'DELETE',
+                      headers: {
+                        'content-type': 'application/json'
+                      },
+                    })
+                    props.history.push('/')
+                  }}
+                >
+                  Delete Note
+                </button>
               </div> 
             </div>
             <p>{note.content}</p>
@@ -31,4 +47,4 @@ function NoteMain(props){
   );
 }
 
-export default NoteMain;
+export default withRouter(NoteMain);
