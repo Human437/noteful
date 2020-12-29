@@ -6,14 +6,24 @@ import NoteSidebar from './note/noteSidebar';
 import FolderMain from './folder/folderMain';
 import MainMain from './main/mainMain';
 import MainSidebar from './main/mainSidebar';
+import STORE from './dummy-store';
 
 class App extends React.Component {
+  constructor(props){
+    super(props);
+    this.state = {
+      folders: STORE.folders,
+      notes: STORE.notes,
+    };
+  }
   render(){
     return (
       <>
         <h1><Link to='/'>Noteful</Link></h1>
         <div id = 'container'>
           <div className = 'sidebar'>
+            {/* You can choose to use component or render, component takes precedent over render
+            Use render when you have to past props */}
             {/* <Route
               exact path='/'
               component={MainSidebar}
@@ -22,39 +32,53 @@ class App extends React.Component {
               exact path='/'
               render = {(props) => (
                 <MainSidebar 
-                  {...props} 
+                  {...props}
+                  folders = {this.state.folders}
                 />
               )}
             />
             {/* <Route
               path='/folder/:folderID'
-              component={FolderSidebar}
+              component={MainSidebar}
             /> */}
             <Route
               path='/folder/:folderID'
               render = {(props) => (
                 <MainSidebar 
                   {...props} 
+                  folders = {this.state.folders}
                 />
               )}
             />
             <Route 
               path = '/note/:noteid' 
-              component = {NoteSidebar}
+              render = {(props) => (
+                <NoteSidebar 
+                  {...props} 
+                  notes = {this.state.notes}
+                  folders = {this.state.folders}
+                />
+              )}
             />
           </div>
           <main>
             <Route
               exact path='/'
-              component={MainMain}
+              render = {(props) => (
+                <MainMain 
+                  {...props} 
+                  notes = {this.state.notes}
+                />
+              )}
             />
             <Route
               path='/folder/:folderID'
-              // component={(props) => {
-              //   console.log(props.match.params.folderID)
-              //   return <div />
-              // }} 
-              component={FolderMain}
+              render = {(props) => (
+                <FolderMain 
+                  {...props} 
+                  notes = {this.state.notes}
+                />
+              )}
             />
             <Route 
               path = '/note/:noteid'
@@ -62,7 +86,12 @@ class App extends React.Component {
               //   console.log(props.match.params.noteid)
               //   return <div />
               // }} 
-              component = {NoteMain}
+              render = {(props) => (
+                <NoteMain 
+                  {...props} 
+                  notes = {this.state.notes}
+                />
+              )}
             />
           </main>
         </div>  

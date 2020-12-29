@@ -1,10 +1,9 @@
 import React from 'react';
-import STORE from './../dummy-store';
 import './noteMain.css'
 
 function NoteMain(props){
   const selectedNoteID = props.match.params.noteid;
-  const note = STORE.notes.find(note =>
+  const note = props.notes.find(note =>
     note.id ===  selectedNoteID
   )
   const date = new Date(note.modified);

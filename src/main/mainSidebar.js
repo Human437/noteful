@@ -1,13 +1,12 @@
 import React from 'react';
-import STORE from './../dummy-store';
 import { NavLink} from 'react-router-dom';
 import './mainSidebar.css'
 
-export default function MainSidebar(){ 
+export default function MainSidebar(props){ 
   return(
     <>
       <ul>
-        {STORE.folders.map(folder => {      
+        {props.folders.map(folder => {      
           return (
             <li key = {folder.id}  id = {folder.id} >
               <NavLink 

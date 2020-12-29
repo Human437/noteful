@@ -1,12 +1,11 @@
 import React from 'react';
-import STORE from './../dummy-store';
 import { Link } from 'react-router-dom';
 
-export default function MainMain(){
+export default function MainMain(props){
   return (
     <>
       <ul>
-        {STORE.notes.map(note =>{
+        {props.notes.map(note =>{
           const date = new Date(note.modified);
           const year = date.getFullYear();
           const month = date.getMonth()+1;

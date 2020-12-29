@@ -1,13 +1,12 @@
 import React from 'react';
 import { withRouter } from 'react-router-dom';
-import STORE from './../dummy-store';
 
 function NoteSidebar(props){
   const selectedNoteID = props.match.params.noteid;
-  const note = STORE.notes.find(note =>
+  const note = props.notes.find(note =>
     note.id ===  selectedNoteID
   )
-  const folder = STORE.folders.find(folder =>
+  const folder = props.folders.find(folder =>
     folder.id === note.folderId
   )
   return(
