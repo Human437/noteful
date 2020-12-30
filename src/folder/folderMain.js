@@ -35,7 +35,6 @@ function FolderMain(props){
                                   'content-type': 'application/json'
                                 },
                               })
-                              props.history.push('/')
                             }}
                           >
                             Delete Note
