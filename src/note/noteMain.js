@@ -25,13 +25,13 @@ function NoteMain(props){
                   id = {note.id} 
                   className = 'deleteNoteBtn'
                   onClick = {(e)=>{
-                    console.log(e.target.id)
                     fetch(`http://localhost:9090/notes/${e.target.id}`, {
                       method: 'DELETE',
                       headers: {
                         'content-type': 'application/json'
                       },
                     })
+                    value.handleDeleteNote(e.target.id);
                     props.history.push('/')
                   }}
                 >
