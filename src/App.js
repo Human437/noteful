@@ -26,10 +26,20 @@ class App extends React.Component {
       .then(data => this.setState({notes:data}))
   }
 
+  handleDeleteNote = (noteId) => {
+    this.setState({
+        notes: this.state.notes.filter(note => note.id !== noteId)
+    });
+  }
+
   render(){
     return (
       <NotefulContext.Provider
-        value = {{folders:this.state.folders, notes:this.state.notes}}>
+        value = {{
+          folders:this.state.folders, 
+          notes:this.state.notes,
+          handleDeleteNote: this.handleDeleteNote,
+        }}>
         <>
           <h1><Link to='/'>Noteful</Link></h1>
           <div id = 'container'>
