@@ -7,6 +7,8 @@ import FolderMain from './folder/folderMain';
 import MainMain from './main/mainMain';
 import MainSidebar from './main/mainSidebar';
 import NotefulContext from './notefulContext';
+import AddFolderSideBar from './addFolder/addFolderSidebar';
+import AddFolderMain from './addFolder/addFolderMain';
 
 class App extends React.Component {
   constructor(props){
@@ -32,6 +34,14 @@ class App extends React.Component {
     });
   }
 
+  handleAddFolder = (newFolder) =>{
+    const folders = this.state.folders
+    folders.push(newFolder)
+    this.setState({
+      folders: folders
+    })
+  }
+
   render(){
     return (
       <NotefulContext.Provider
@@ -39,6 +49,7 @@ class App extends React.Component {
           folders:this.state.folders, 
           notes:this.state.notes,
           handleDeleteNote: this.handleDeleteNote,
+          handleAddFolder: this.handleAddFolder,
         }}>
         <>
           <h1><Link to='/'>Noteful</Link></h1>
@@ -59,10 +70,6 @@ class App extends React.Component {
                   />
                 )}
               />
-              {/* <Route
-                path='/folder/:folderID'
-                component={MainSidebar}
-              /> */}
               <Route
                 path='/folder/:folderID'
                 render = {(props) => (
@@ -81,6 +88,10 @@ class App extends React.Component {
                     folders = {this.state.folders}
                   />
                 )}
+              />
+              <Route
+                path = '/addFolder'
+                component = {AddFolderSideBar}
               />
             </div>
             <main>
@@ -114,6 +125,10 @@ class App extends React.Component {
                     notes = {this.state.notes}
                   />
                 )}
+              />
+              <Route
+                path = '/addFolder'
+                component = {AddFolderMain}
               />
             </main>
           </div>  
