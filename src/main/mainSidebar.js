@@ -1,5 +1,5 @@
 import React from 'react';
-import { NavLink} from 'react-router-dom';
+import { NavLink, Link} from 'react-router-dom';
 import './mainSidebar.css'
 import NotefulContext from './../notefulContext';
 
@@ -25,7 +25,11 @@ export default function MainSidebar(){
               })}       
             </ul>
             <br/>
-            <button id = 'mainSidebarFolderBtn'>Add Folder</button>
+            <Link 
+              to = {`/addFolder`}
+            >
+              <button id = 'mainSidebarFolderBtn'>Add Folder</button>
+            </Link>
           </> 
         )
       }}
