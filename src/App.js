@@ -11,6 +11,7 @@ import AddFolderSideBar from './addFolder/addFolderSidebar';
 import AddFolderMain from './addFolder/addFolderMain';
 import AddNoteSidebar from './addNote/addNoteSidebar';
 import AddNoteMain from './addNote/addNoteMain';
+import NotefulError from './notefulError';
 
 class App extends React.Component {
   constructor(props){
@@ -65,91 +66,95 @@ class App extends React.Component {
         <>
           <h1><Link to='/'>Noteful</Link></h1>
           <div id = 'container'>
-            <div className = 'sidebar'>
-              {/* You can choose to use component or render, component takes precedent over render
-              Use render when you have to past props */}
-              {/* <Route
-                exact path='/'
-                component={MainSidebar}
-              /> */}
-              <Route
-                exact path='/'
-                render = {(props) => (
-                  <MainSidebar 
-                    {...props}
-                    folders = {this.state.folders}
-                  />
-                )}
-              />
-              <Route
-                path='/folder/:folderID'
-                render = {(props) => (
-                  <MainSidebar 
-                    {...props} 
-                    folders = {this.state.folders}
-                  />
-                )}
-              />
-              <Route 
-                path = '/note/:noteid' 
-                render = {(props) => (
-                  <NoteSidebar 
-                    {...props} 
-                    notes = {this.state.notes}
-                    folders = {this.state.folders}
-                  />
-                )}
-              />
-              <Route
-                path = '/addFolder'
-                component = {AddFolderSideBar}
-              />
-              <Route
-                path = '/addNote'
-                component = {AddNoteSidebar}
-              />
-            </div>
-            <main>
-              <Route
-                exact path='/'
-                render = {(props) => (
-                  <MainMain 
-                    {...props} 
-                    notes = {this.state.notes}
-                  />
-                )}
-              />
-              <Route
-                path='/folder/:folderID'
-                render = {(props) => (
-                  <FolderMain 
-                    {...props} 
-                    notes = {this.state.notes}
-                  />
-                )}
-              />
-              <Route 
-                path = '/note/:noteid'
-                // component={(props) => {
-                //   console.log(props.match.params.noteid)
-                //   return <div />
-                // }} 
-                render = {(props) => (
-                  <NoteMain 
-                    {...props} 
-                    notes = {this.state.notes}
-                  />
-                )}
-              />
-              <Route
-                path = '/addFolder'
-                component = {AddFolderMain}
-              />
-              <Route
-                path = '/addNote'
-                component = {AddNoteMain}
-              />
-            </main>
+            <NotefulError>
+              <div className = 'sidebar'>
+                {/* You can choose to use component or render, component takes precedent over render
+                Use render when you have to past props */}
+                {/* <Route
+                  exact path='/'
+                  component={MainSidebar}
+                /> */}
+                <Route
+                  exact path='/'
+                  render = {(props) => (
+                    <MainSidebar 
+                      {...props}
+                      folders = {this.state.folders}
+                    />
+                  )}
+                />
+                <Route
+                  path='/folder/:folderID'
+                  render = {(props) => (
+                    <MainSidebar 
+                      {...props} 
+                      folders = {this.state.folders}
+                    />
+                  )}
+                />
+                <Route 
+                  path = '/note/:noteid' 
+                  render = {(props) => (
+                    <NoteSidebar 
+                      {...props} 
+                      notes = {this.state.notes}
+                      folders = {this.state.folders}
+                    />
+                  )}
+                />
+                <Route
+                  path = '/addFolder'
+                  component = {AddFolderSideBar}
+                />
+                <Route
+                  path = '/addNote'
+                  component = {AddNoteSidebar}
+                />
+              </div>
+            </NotefulError>
+            <NotefulError>
+              <main>
+                <Route
+                  exact path='/'
+                  render = {(props) => (
+                    <MainMain 
+                      {...props} 
+                      notes = {this.state.notes}
+                    />
+                  )}
+                />
+                <Route
+                  path='/folder/:folderID'
+                  render = {(props) => (
+                    <FolderMain 
+                      {...props} 
+                      notes = {this.state.notes}
+                    />
+                  )}
+                />
+                <Route 
+                  path = '/note/:noteid'
+                  // component={(props) => {
+                  //   console.log(props.match.params.noteid)
+                  //   return <div />
+                  // }} 
+                  render = {(props) => (
+                    <NoteMain 
+                      {...props} 
+                      notes = {this.state.notes}
+                    />
+                  )}
+                />
+                <Route
+                  path = '/addFolder'
+                  component = {AddFolderMain}
+                />
+                <Route
+                  path = '/addNote'
+                  component = {AddNoteMain}
+                />
+              </main>
+            </NotefulError>
           </div>  
         </>
       </NotefulContext.Provider>
