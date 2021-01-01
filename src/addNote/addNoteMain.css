@@ -1,0 +1,10 @@
+#addNoteInputContent{
+  resize: none;
+  width: 25%;
+}
+#addNoteInputName{
+  width: 25%;
+}
+#addNoteInputFolder{
+  width: 25%;
+}
