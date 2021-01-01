@@ -9,6 +9,8 @@ import MainSidebar from './main/mainSidebar';
 import NotefulContext from './notefulContext';
 import AddFolderSideBar from './addFolder/addFolderSidebar';
 import AddFolderMain from './addFolder/addFolderMain';
+import AddNoteSidebar from './addNote/addNoteSidebar';
+import AddNoteMain from './addNote/addNoteMain';
 
 class App extends React.Component {
   constructor(props){
@@ -93,6 +95,10 @@ class App extends React.Component {
                 path = '/addFolder'
                 component = {AddFolderSideBar}
               />
+              <Route
+                path = '/addNote'
+                component = {AddNoteSidebar}
+              />
             </div>
             <main>
               <Route
@@ -129,6 +135,10 @@ class App extends React.Component {
               <Route
                 path = '/addFolder'
                 component = {AddFolderMain}
+              />
+              <Route
+                path = '/addNote'
+                component = {AddNoteMain}
               />
             </main>
           </div>  
