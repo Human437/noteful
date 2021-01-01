@@ -1,6 +1,7 @@
 import React from 'react';
 import NotefulContext from './../notefulContext';
 import ValidationError from './../validationError';
+import PropTypes from 'prop-types';
 
 export default class AddFolderMain extends React.Component{
   constructor(props){
@@ -68,4 +69,8 @@ export default class AddFolderMain extends React.Component{
       </form>
     )
   }
+}
+
+AddFolderMain.propTypes = {
+  history: PropTypes.object.isRequired
 }

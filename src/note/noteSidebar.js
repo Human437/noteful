@@ -1,6 +1,7 @@
 import React from 'react';
 import { withRouter } from 'react-router-dom';
 import NotefulContext from './../notefulContext';
+import PropTypes from 'prop-types';
 
 function NoteSidebar(props){
   return(
@@ -25,3 +26,8 @@ function NoteSidebar(props){
 }
 
 export default withRouter(NoteSidebar);
+
+NoteSidebar.propTypes = {
+  match: PropTypes.object.isRequired,
+  history: PropTypes.object.isRequired
+}

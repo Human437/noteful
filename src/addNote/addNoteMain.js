@@ -2,6 +2,7 @@ import React from 'react';
 import NotefulContext from './../notefulContext';
 import './addNoteMain.css'
 import ValidationError from './../validationError'
+import PropTypes from 'prop-types';
 
 export default class AddNoteMain extends React.Component{
   constructor(props){
@@ -120,4 +121,8 @@ export default class AddNoteMain extends React.Component{
       </form>
     )
   }
+}
+
+AddNoteMain.propTypes = {
+  history: PropTypes.object.isRequired
 }

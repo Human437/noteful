@@ -2,6 +2,7 @@ import React from 'react';
 import './noteMain.css';
 import NotefulContext from './../notefulContext';
 import { withRouter } from 'react-router-dom';
+import PropTypes from 'prop-types';
 
 function NoteMain(props){
   return(
@@ -48,3 +49,8 @@ function NoteMain(props){
 }
 
 export default withRouter(NoteMain);
+
+NoteMain.propTypes = {
+  match: PropTypes.object.isRequired,
+  history: PropTypes.object.isRequired
+}

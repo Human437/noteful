@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import './../note/noteMain.css';
 import './folderMain.css';
 import NotefulContext from './../notefulContext';
+import PropTypes from 'prop-types';
 
 function FolderMain(props){
   const selectedFolderID = props.match.params.folderID;
@@ -57,3 +58,7 @@ function FolderMain(props){
 }
 
 export default FolderMain;
+
+FolderMain.propTypes = {
+  match: PropTypes.object.isRequired
+}
