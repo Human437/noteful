@@ -79,7 +79,6 @@ class App extends React.Component {
                   render = {(props) => (
                     <MainSidebar 
                       {...props}
-                      folders = {this.state.folders}
                     />
                   )}
                 />
@@ -88,7 +87,6 @@ class App extends React.Component {
                   render = {(props) => (
                     <MainSidebar 
                       {...props} 
-                      folders = {this.state.folders}
                     />
                   )}
                 />
@@ -97,8 +95,6 @@ class App extends React.Component {
                   render = {(props) => (
                     <NoteSidebar 
                       {...props} 
-                      notes = {this.state.notes}
-                      folders = {this.state.folders}
                     />
                   )}
                 />
@@ -119,7 +115,6 @@ class App extends React.Component {
                   render = {(props) => (
                     <MainMain 
                       {...props} 
-                      notes = {this.state.notes}
                     />
                   )}
                 />
@@ -128,7 +123,6 @@ class App extends React.Component {
                   render = {(props) => (
                     <FolderMain 
                       {...props} 
-                      notes = {this.state.notes}
                     />
                   )}
                 />
@@ -141,7 +135,6 @@ class App extends React.Component {
                   render = {(props) => (
                     <NoteMain 
                       {...props} 
-                      notes = {this.state.notes}
                     />
                   )}
                 />
