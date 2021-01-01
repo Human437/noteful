@@ -46,7 +46,7 @@ function FolderMain(props){
               })}
               
             </ul>
-            <Link to = './addNote'>
+            <Link to = '/addNote'>
               <button id = 'addNoteBtn'>Add note</button>
             </Link>
           </>
