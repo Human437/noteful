@@ -1,28 +1,46 @@
 import React from 'react';
 import NotefulContext from './../notefulContext';
+import ValidationError from './../validationError';
 
 export default class AddFolderMain extends React.Component{
+  constructor(props){
+    super(props);
+    this.state ={
+      folder:{
+        value: '',
+        touched: false,
+      }
+    }
+  }
+
   static contextType = NotefulContext;
+
+  updateFolder(folder){
+    this.setState({folder:{value:folder, touched:true}})
+  }
+
+  validateFolder(){
+    const folder = this.state.folder.value.trim();
+    if (folder.length === 0){
+      return 'Folder name is required';
+    }
+  }
 
   handleSubmit(event){
     event.preventDefault();
     const newFolderName = document.getElementById('addFolderInput').value.trim();
-    if (newFolderName.length === 0){
-      alert('Enter a new folder name!!!')
-    }else{
-      fetch(`http://localhost:9090/folders`, {
-        method: 'POST',
-        body: JSON.stringify({
-          name: newFolderName
-        }),
-        headers: {
-          'content-type': 'application/json'
-        },
-      })
-      .then(response => response.json())
-      .then(json => this.context.handleAddFolder(json))
-      this.props.history.push('/')
-    }
+    fetch(`http://localhost:9090/folders`, {
+      method: 'POST',
+      body: JSON.stringify({
+        name: newFolderName
+      }),
+      headers: {
+        'content-type': 'application/json'
+      },
+    })
+    .then(response => response.json())
+    .then(json => this.context.handleAddFolder(json))
+    this.props.history.push('/')
   }
 
   render(){
@@ -36,11 +54,14 @@ export default class AddFolderMain extends React.Component{
           name='addFolderInput' 
           id ='addFolderInput' 
           placeholder= 'new folder name'
+          onChange = {e=>this.updateFolder(e.target.value)}
         />
+        {this.state.folder.touched && (<ValidationError message = {this.validateFolder()}/>)}
         <br/>
         <br/>
         <button
           type = 'submit'
+          disabled= {this.validateFolder()}
         >
           Add Folder
         </button>
