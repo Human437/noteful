@@ -44,6 +44,14 @@ class App extends React.Component {
     })
   }
 
+  handleAddNote = (newNote) =>{
+    const notes = this.state.notes
+    notes.push(newNote)
+    this.setState({
+      notes: notes
+    })
+  }
+
   render(){
     return (
       <NotefulContext.Provider
@@ -52,6 +60,7 @@ class App extends React.Component {
           notes:this.state.notes,
           handleDeleteNote: this.handleDeleteNote,
           handleAddFolder: this.handleAddFolder,
+          handleAddNote: this.handleAddNote,
         }}>
         <>
           <h1><Link to='/'>Noteful</Link></h1>
