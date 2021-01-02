@@ -17,7 +17,7 @@ export default function MainMain(){
                 return (
                   <li key = {note.id}>
                     <div id = 'noteContainer'>
-                      <h3><Link to ={`/note/${note.id}`}>{note.name}</Link></h3>
+                      <h2><Link to ={`/note/${note.id}`}>{note.name}</Link></h2>
                       <div id = 'date-button-box'>
                         <p>Date modified: {`${month}/${day}/${year}`}</p>
                         <button 
