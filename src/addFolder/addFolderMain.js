@@ -2,6 +2,7 @@ import React from 'react';
 import NotefulContext from './../notefulContext';
 import ValidationError from './../validationError';
 import PropTypes from 'prop-types';
+import config from './../config'
 
 export default class AddFolderMain extends React.Component{
   constructor(props){
@@ -30,13 +31,14 @@ export default class AddFolderMain extends React.Component{
   handleSubmit(event){
     event.preventDefault();
     const newFolderName = document.getElementById('addFolderInput').value.trim();
-    fetch(`http://localhost:9090/folders`, {
+    fetch(config.API_FOLDER_ENDPOINT, {
       method: 'POST',
       body: JSON.stringify({
         name: newFolderName
       }),
       headers: {
-        'content-type': 'application/json'
+        'content-type': 'application/json',
+        'Authorization': `Bearer ${config.BEARER_TOKEN}`
       },
     })
     .then(response => response.json())

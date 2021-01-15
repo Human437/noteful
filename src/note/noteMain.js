@@ -3,6 +3,7 @@ import './noteMain.css';
 import NotefulContext from './../notefulContext';
 import { withRouter } from 'react-router-dom';
 import PropTypes from 'prop-types';
+import config from './../config'
 
 function NoteMain(props){
   return(
@@ -10,7 +11,7 @@ function NoteMain(props){
       {(value) => {
         const selectedNoteID = props.match.params.noteid;
         const note = value.notes.find(note =>
-          note.id ===  selectedNoteID
+          note.id ===  Number(selectedNoteID)
         )
         const date = new Date(note.modified);
         const year = date.getFullYear();
@@ -26,10 +27,11 @@ function NoteMain(props){
                   id = {note.id} 
                   className = 'deleteNoteBtn'
                   onClick = {(e)=>{
-                    fetch(`http://localhost:9090/notes/${e.target.id}`, {
+                    fetch(`${config.API_NOTES_ENDPOINT}/${e.target.id}`, {
                       method: 'DELETE',
                       headers: {
-                        'content-type': 'application/json'
+                        'content-type': 'application/json',
+                        'Authorization': `Bearer ${config.BEARER_TOKEN}` 
                       },
                     })
                     value.handleDeleteNote(e.target.id);

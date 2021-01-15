@@ -3,6 +3,7 @@ import NotefulContext from './../notefulContext';
 import './addNoteMain.css'
 import ValidationError from './../validationError'
 import PropTypes from 'prop-types';
+import config from './../config'
 
 export default class AddNoteMain extends React.Component{
   constructor(props){
@@ -13,6 +14,10 @@ export default class AddNoteMain extends React.Component{
         touched: false,
       },
       folder:{
+        value: '',
+        touched: false,
+      },
+      content:{
         value: '',
         touched: false,
       }
@@ -29,6 +34,10 @@ export default class AddNoteMain extends React.Component{
     this.setState({folder:{value:folder, touched:true}})
   }
 
+  updateContent(content){
+    this.setState({content:{value:content, touched:true}})
+  }
+
   validateName(){
     const name = this.state.name.value.trim();
     if (name.length === 0){
@@ -43,22 +52,28 @@ export default class AddNoteMain extends React.Component{
     }
   }
 
+  validateContent(){
+    const content = this.state.content.value.trim();
+    if (content.length === 0){
+      return 'Content is required'
+    }
+  }
+
   handleSubmit(event){
     event.preventDefault();
     const newNoteName = document.getElementById('addNoteInputName').value.trim();
     const newNoteContent = document.getElementById('addNoteInputContent').value.trim();
     const newNoteFolder = document.getElementById('addNoteInputFolder').value.trim();
-    const date = new Date();
-    fetch(`http://localhost:9090/notes`, {
+    fetch(config.API_NOTES_ENDPOINT, {
       method: 'POST',
       body: JSON.stringify({
         name: newNoteName,
         content: newNoteContent,
         folderId: newNoteFolder,
-        modified: date.toISOString()
       }),
       headers: {
-        'content-type': 'application/json'
+        'content-type': 'application/json',
+        'Authorization': `Bearer ${config.BEARER_TOKEN}`
       },
     })
     .then(response => response.json())
@@ -89,7 +104,9 @@ export default class AddNoteMain extends React.Component{
           name='addNoteInputContent'
           id='addNoteInputContent'
           placeholder='new note content'
+          onChange = {e=> this.updateContent(e.target.value)}
         ></textarea>
+        {this.state.folder.touched && (<ValidationError message = {this.validateContent()}/>)}
         <br/>
         <br/>
         <label htmlFor='addNoteInputFolder'>Folder</label>
@@ -113,7 +130,8 @@ export default class AddNoteMain extends React.Component{
           type='submit'
           disabled={
             this.validateName() ||
-            this.validateFolder()
+            this.validateFolder() ||
+            this.validateContent()
           }
         >
           Add Note

@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import NotefulContext from './../notefulContext';
+import config from './../config'
 
 export default function MainMain(){
   return (
@@ -24,10 +25,11 @@ export default function MainMain(){
                           id = {note.id} 
                           className = 'deleteNoteBtn'
                           onClick = {(e)=>{
-                            fetch(`http://localhost:9090/notes/${e.target.id}`, {
+                            fetch(`${config.API_NOTES_ENDPOINT}/${e.target.id}`, {
                               method: 'DELETE',
                               headers: {
-                                'content-type': 'application/json'
+                                'content-type': 'application/json',
+                                'Authorization': `Bearer ${config.BEARER_TOKEN}`
                               },
                             })
                             value.handleDeleteNote(e.target.id);

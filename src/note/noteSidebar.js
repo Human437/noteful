@@ -9,7 +9,7 @@ function NoteSidebar(props){
       {(value) => {
         const selectedNoteID = props.match.params.noteid;
         const note = value.notes.find(note =>
-          note.id ===  selectedNoteID
+          note.id ===  Number(selectedNoteID)
         )
         const folder = value.folders.find(folder =>
           folder.id === note.folderId

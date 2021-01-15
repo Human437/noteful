@@ -12,6 +12,7 @@ import AddFolderMain from './addFolder/addFolderMain';
 import AddNoteSidebar from './addNote/addNoteSidebar';
 import AddNoteMain from './addNote/addNoteMain';
 import NotefulError from './notefulError';
+import config from './config'
 
 class App extends React.Component {
   constructor(props){
@@ -23,12 +24,22 @@ class App extends React.Component {
   }
 
   componentDidMount(){
-    fetch('http://localhost:9090/folders')
-      .then(response => response.json())
-      .then(data => this.setState({folders:data}))
-    fetch(`http://localhost:9090/notes`)
-      .then(response => response.json())
-      .then(data => this.setState({notes:data}))
+    fetch(config.API_FOLDER_ENDPOINT,{
+      method: 'get',
+      headers: new Headers({
+        'Authorization': `Bearer ${config.BEARER_TOKEN}`
+      })
+    })
+    .then(response => response.json())
+    .then(data => this.setState({folders:data}))
+    fetch(config.API_NOTES_ENDPOINT,{
+      method: 'get',
+      headers: new Headers({
+        'Authorization': `Bearer ${config.BEARER_TOKEN}`
+      })
+    })
+    .then(response => response.json())
+    .then(data => this.setState({notes:data}))
   }
 
   handleDeleteNote = (noteId) => {

@@ -4,13 +4,14 @@ import './../note/noteMain.css';
 import './folderMain.css';
 import NotefulContext from './../notefulContext';
 import PropTypes from 'prop-types';
+import config from './../config'
 
 function FolderMain(props){
   const selectedFolderID = props.match.params.folderID;
   return(
     <NotefulContext.Consumer>
       {(value) => {
-        const selectedNotes = value.notes.filter(note => note.folderId === selectedFolderID)
+        const selectedNotes = value.notes.filter(note => note.folderId === Number(selectedFolderID))
         return(
           <>
             <ul>
@@ -29,10 +30,11 @@ function FolderMain(props){
                           id = {note.id} 
                           className = 'deleteNoteBtn'
                           onClick = {(e)=>{
-                            fetch(`http://localhost:9090/notes/${e.target.id}`, {
+                            fetch(`${config.API_NOTES_ENDPOINT}/${e.target.id}`, {
                               method: 'DELETE',
                               headers: {
-                                'content-type': 'application/json'
+                                'content-type': 'application/json',
+                                'Authorization': `Bearer ${config.BEARER_TOKEN}`
                               },
                             })
                             value.handleDeleteNote(e.target.id);
